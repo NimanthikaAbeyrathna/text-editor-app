@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane onDragDropped="#rootOnDragDropped" onDragOver="#rootOnDragOver" prefHeight="483.0" prefWidth="600.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep10.editer.controller.EditorSceneController">
+   <children>
+      <MenuBar layoutY="27.0" prefHeight="28.0" style="-fx-background-color: GREY;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <menus>
+            <Menu mnemonicParsing="false" text="File">
+              <items>
+                <Menu mnemonicParsing="false" onAction="#mnNewOnAction" text="new">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                </Menu>
+                <Menu mnemonicParsing="false" onAction="#mnOpenOnAction" text="Open" />
+                <Menu mnemonicParsing="false" onAction="#mnSaveOnAction" text="Save" />
+                  <Menu mnemonicParsing="false" onAction="#mnSaveAsOnAction" text="Save As" />
+                  <Menu fx:id="mnPrint" mnemonicParsing="false" onAction="#mnPrintOnAction" text="Print" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <Menu mnemonicParsing="false" onAction="#mnCloseOnAction" text="Close" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#mnAboutOnAction" text="About" />
+                  <MenuItem mnemonicParsing="false" onAction="#mnHelpOnAction" text="Help" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <HBox prefHeight="27.0" prefWidth="600.0" style="-fx-background-color: BLUE;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="lblEditing" prefHeight="29.0" prefWidth="85.0" text="Editing....." textFill="#fafafa" visible="false" />
+            <Label fx:id="lblTitle" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="466.0" style="-fx-background-color: BLUE;" text="Untitled - Text Editer" textFill="#fafafa" HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnMinimize" mnemonicParsing="false" onAction="#btnMinimizeOnAction" prefHeight="29.0" prefWidth="45.0" text="-" />
+            <Button fx:id="btnMaximize" mnemonicParsing="false" onAction="#btnMaximizeOnAction" prefHeight="29.0" prefWidth="45.0">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/mazimize1.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="btnClose" mnemonicParsing="false" onAction="#btnCloseOnAction" prefHeight="29.0" prefWidth="45.0" text="x" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="55.0" maxWidth="1.7976931348623157E308" spacing="5.0" style="-fx-background-color: GREY;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
+         <children>
+            <TextField fx:id="txtFind" prefHeight="25.0" prefWidth="100.0" promptText="Find" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="10.0" />
+               </font></TextField>
+            <CheckBox fx:id="chkMatchcase" mnemonicParsing="false" selected="true" text="Match case" textFill="#fafafa">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </CheckBox>
+            <Button fx:id="btnUp" mnemonicParsing="false" onAction="#btnUpOnAction" prefHeight="25.0">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/arrowup1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnDown" mnemonicParsing="false" onAction="#btnDownOnAction" prefHeight="25.0">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/arrowdown.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <TextField fx:id="txtReplace" prefHeight="25.0" prefWidth="100.0" promptText="Replace" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="10.0" />
+               </font></TextField>
+            <Button fx:id="btnReplace" mnemonicParsing="false" onAction="#btnReplaceOnAction" prefHeight="25.0" text="Replace">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+            <Button fx:id="btnReplaceAll" mnemonicParsing="false" onAction="#btnReplaceAllOnAction" prefHeight="25.0" text="Replace All">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+            <Label fx:id="lblResult" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: GREY;" text="0 Results" textFill="#fafafa" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+         </children>
+         <padding>
+            <Insets bottom="3.0" left="5.0" top="3.0" />
+         </padding>
+      </HBox>
+      <TextArea fx:id="txteditor" layoutX="100.0" layoutY="142.0" onKeyPressed="#txteditorOnKeyPressed" onKeyReleased="#txteditorOnKeyReleased" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: GREY;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0" />
+   </children>
+</AnchorPane>

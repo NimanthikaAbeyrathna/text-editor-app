@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="486.0" prefWidth="423.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep10.editer.controller.AboutSceneController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="28.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/textediter.png" />
+         </image>
+      </ImageView>
+      <TextArea layoutX="5.0" layoutY="191.0" prefHeight="290.0" prefWidth="415.0" promptText="Text Editer" text="&#10;&#10;Text Editer is a simple, open sourse application can edit text files.&#10;&#10;Product Version&#10;Text Editor - 1.0.0&#10;&#10;Build Information&#10;Version - 1.0.0&#10;Date - 2023/02/22&#10;JavaFX Version: 19&#10;Java Version: 11&#10;&#10;&#10;Operating System&#10;Linux, amd64, 5.19.0-32-generic&#10;">
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font>
+      </TextArea>
+      <Label layoutX="175.0" layoutY="85.0" prefHeight="45.0" prefWidth="150.0" text="Text Editer" textFill="#3815b9">
+         <font>
+            <Font name="System Bold Italic" size="23.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
