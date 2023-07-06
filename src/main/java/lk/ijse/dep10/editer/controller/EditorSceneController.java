@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.print.JobSettings;
 import javafx.print.PageLayout;
+import javafx.print.Printer;
 import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -18,9 +19,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lk.ijse.dep10.editer.AppInitializer;
 import lk.ijse.dep10.editer.util.SearchResult;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -154,7 +160,9 @@ public class EditorSceneController extends AppInitializer {
 
     @FXML
     void mnNewOnAction(ActionEvent event) {//1
-        txteditor.setText("");
+        if (txteditor != null && !txteditor.getText().equals("")) {
+            txteditor.setText("");
+        }
 
     }
 
@@ -282,7 +290,10 @@ public class EditorSceneController extends AppInitializer {
     @FXML
     void mnCloseOnAction(ActionEvent event) throws IOException {
         closeAction();
-        mnNew.fire();
+        if (txteditor != null && !txteditor.getText().equals("")) {
+            txteditor.setText("");
+        }
+
         isFileSaved = false;
 
 
@@ -292,32 +303,25 @@ public class EditorSceneController extends AppInitializer {
     @FXML
     void mnPrintOnAction(ActionEvent event) {
 
-        PrinterJob job = PrinterJob.createPrinterJob();
 
-        if (job == null) {
-            System.out.println("Error");
-            return;
-        }
-
-        boolean proceed = job.showPrintDialog(lblEditing.getScene().getWindow());
-
-        JobSettings ss1 = job.getJobSettings();
-
-        PageLayout pageLayout1 = ss1.getPageLayout();
-
-        double pgW1 = pageLayout1.getPrintableWidth();
-        double pgH1 = pageLayout1.getPrintableHeight();
-
-        Label tempText = new Label();
-        tempText.setPrefWidth(pgW1);
-        tempText.setPrefHeight(pgH1);
-        tempText.setWrapText(true);
-        tempText.setText(txteditor.getText());
+        try {
+            InputStream reportTemplate = getClass().getResourceAsStream("/reports/texteditor.jasper");
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(reportTemplate);
 
 
-        if (proceed) {
-            job.printPage(tempText);
-            job.endJob();
+            Map<String, Object> parameters = new HashMap<>();
+
+
+            parameters.put("text", txteditor.getText());
+
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource(1));
+
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -330,14 +334,12 @@ public class EditorSceneController extends AppInitializer {
     public void btnMaximizeOnAction(ActionEvent actionEvent) {
 
         Stage s = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        // RichTextFX
+
         if (isMaximized == false) {
             s.setMaximized(true);
-            //s.setFullScreen(true);
             isMaximized = true;
         } else {
             s.setMaximized(false);
-            //s.setFullScreen(false);
             isMaximized = false;
         }
 
