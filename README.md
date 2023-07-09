@@ -21,7 +21,7 @@ I'm a full stack developer...
 
 ## 🔗 Links
 
-[![linkedin](https://www.linkedin.com/in/nimanthika-abeyrathna-b27b48184/)](https://www.linkedin.com/)
+[![linkedin](https://www.linkedin.com/in/nimanthika-abeyrathna-b27b48184/)]
 
 email - nimanthikaabeyrathna@gmail.com
 
