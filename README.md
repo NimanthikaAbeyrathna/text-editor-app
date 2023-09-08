@@ -10,6 +10,9 @@ The Text Editor App is a simple and user-friendly application that allows users 
 
 ### Version
 1.0.0
+
+[texteditor.webm](https://github.com/NimanthikaAbeyrathna/text-editor-app/assets/121820614/8e5fc3a6-2e3e-4324-8766-03bce03738ae)
+
 ## Authors
 
 - [@nimanthikaabeyrathna](https://github.com/NimanthikaAbeyrathna/)
